@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/azul"
+    >
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="71dp"
+        android:layout_height="49dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="-12dp"
+        android:layout_marginBottom="669dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025"
+        app:srcCompat="@drawable/logo_itc" />
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/imageView3"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="668dp"
+        android:text="Etapa Del Cultivo"
+        android:textColor="@color/yellow"
+        android:textSize="34sp"
+        android:textStyle="normal|bold" />
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="567dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="48dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/buttonFechaEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:background="@color/blue"
+                android:onClick="mostrarDatePicker"
+                android:text="Seleccionar Fecha"
+                android:textSize="18dp"/>
+
+            <TextView
+                android:id="@+id/textViewFechaEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Fecha: No Seleccionada"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextNombreEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Nombre Etapa"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextObservaciones"
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorWhite"
+                android:hint="Observaciones"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextMedidas"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Medidas"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextHorascalor"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Horas Calor"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextTierraEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Tipo de Tierra"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextUbicacionEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Ubicación (Maceta / Suelo)"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:id="@+id/editTextSubstratoEtapa"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Tipo de Substrato"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/imageViewSelected"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/buttonUploadImage"
+                android:layout_marginTop="10dp"
+                android:scaleType="centerCrop" />
+
+            <Button
+                android:id="@+id/buttonUploadImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnRegistrarEtapa"
+                android:layout_marginTop="12dp"
+                android:background="@color/blue"
+                android:text="Subir Imagen"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/btnRegistrarEtapa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="12dp"
+                android:background="@color/blue"
+                android:text="Registrar Etapa"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                tools:ignore="ObsoleteLayoutParam" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "948489515245",
+    "firebase_url": "https://huertos-704ad-default-rtdb.firebaseio.com",
+    "project_id": "huertos-704ad",
+    "storage_bucket": "huertos-704ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948489515245:android:71b2dd272772ced2c0dce4",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjNptr0RNAW0YKa6rhiQycng2cPNKwrno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:948489515245:android:ab959fc5fe735ff3c0dce4",
+        "android_client_info": {
+          "package_name": "com.example.iot_plantmate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjNptr0RNAW0YKa6rhiQycng2cPNKwrno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
