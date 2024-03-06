@@ -64,14 +64,16 @@ public class SensoresActivity extends AppCompatActivity {
                 // Iterar a través de los registros del usuario
                 for (DataSnapshot cultivoSnapshot : dataSnapshot.getChildren()) {
                     // Obtener el nombre del cultivo (grupo)
-                    String nombreCultivo = ("Cultivo" + cultivoSnapshot.child("nombreComun").getValue(String.class));
+                    String nombreCultivo = ("Cultivo: " + cultivoSnapshot.child("nombreComun").getValue(String.class));
                     listDataHeader.add(nombreCultivo);
 
                     // Obtener detalles del cultivo (niño)
                     List<String> detallesCultivo = new ArrayList<>();
-                    detallesCultivo.add("Temperatura: " + cultivoSnapshot.child("temperatura").getValue(Float.class));
-                    detallesCultivo.add("Descripción: " + cultivoSnapshot.child("descripcion").getValue(String.class));
                     detallesCultivo.add("ID: " + cultivoSnapshot.child("id").getValue(String.class));
+                    detallesCultivo.add("Temperatura: " + cultivoSnapshot.child("temperaturaC").getValue(Float.class));
+                    detallesCultivo.add("ph: " + cultivoSnapshot.child("pH").getValue(Float.class));
+                    detallesCultivo.add("Humedad del suelo: " + cultivoSnapshot.child("humedadSueloPorcentual").getValue(Float.class));
+                    detallesCultivo.add("Humedad del aire: " + cultivoSnapshot.child("humedadAmbientePorcentual").getValue(Float.class));
                     // ... repite para otros campos
 
                     listDataChild.put(nombreCultivo, detallesCultivo);

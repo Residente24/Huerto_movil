@@ -96,7 +96,7 @@ public class NuevoCultivoActivity extends AppCompatActivity {
         String nombreCientifico = editTextNombreCientifico.getText().toString().trim();
         String descripcion = editTextDescripcion.getText().toString().trim();
         String crecimiento = editTextCrecimiento.getText().toString().trim();
-        String luz = editTextLuz.getText().toString().trim();
+        String luzt = editTextLuz.getText().toString().trim();
         String tierra = editTextTierra.getText().toString().trim();
         String ubicacion = editTextUbicacion.getText().toString().trim();
         String substrato = editTextSubstrato.getText().toString().trim();
@@ -104,14 +104,14 @@ public class NuevoCultivoActivity extends AppCompatActivity {
 
         // Verifica si los campos están vacíos
         if (nombreComun.isEmpty() || nombreCientifico.isEmpty() || descripcion.isEmpty() ||
-                crecimiento.isEmpty() || luz.isEmpty() || tierra.isEmpty() || ubicacion.isEmpty() ||
+                crecimiento.isEmpty() || luzt.isEmpty() || tierra.isEmpty() || ubicacion.isEmpty() ||
                 substrato.isEmpty() || fecha.isEmpty()) {
             // Muestra un mensaje de error
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
         } else {
             // Crea un nuevo objeto Cultivo con el ID del usuario
             Cultivo cultivo = new Cultivo(nombreComun, nombreCientifico, descripcion, crecimiento,
-                    luz, tierra, ubicacion, substrato, fecha);
+                    luzt, tierra, ubicacion, substrato, fecha);
 
             // Obtén una referencia a la base de datos de Firebase
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
@@ -148,7 +148,7 @@ public class NuevoCultivoActivity extends AppCompatActivity {
     // Clase interna para el modelo Cultivo
     private static class Cultivo {
         public String id;
-        public String nombreComun, nombreCientifico, descripcion, crecimiento, luz, tierra,
+        public String nombreComun, nombreCientifico, descripcion, crecimiento, luzt, tierra,
                 ubicacion, substrato, fecha;
 
         public Cultivo() {
@@ -156,13 +156,13 @@ public class NuevoCultivoActivity extends AppCompatActivity {
         }
 
         public Cultivo(String nombreComun, String nombreCientifico, String descripcion,
-                       String crecimiento, String luz, String tierra, String ubicacion,
+                       String crecimiento, String luzt, String tierra, String ubicacion,
                        String substrato, String fecha) {
             this.nombreComun = nombreComun;
             this.nombreCientifico = nombreCientifico;
             this.descripcion = descripcion;
             this.crecimiento = crecimiento;
-            this.luz = luz;
+            this.luzt = luzt;
             this.tierra = tierra;
             this.ubicacion = ubicacion;
             this.substrato = substrato;
