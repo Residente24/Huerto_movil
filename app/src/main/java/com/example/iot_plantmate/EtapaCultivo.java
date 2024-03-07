@@ -184,7 +184,7 @@ public class EtapaCultivo extends AppCompatActivity {
 
     private void uploadImageToFirebaseStorage(String etapaId, String userId, Etapa etapa) {
         // Obtener la referencia al Storage con el nombre de la imagen
-        StorageReference imageRef = storageReference.child("etapas_images/" + userId + "/" + etapaId + ".jpg");
+        StorageReference imageRef = storageReference.child("users/" + userId +"/" + "etapas/" + etapaId + ".jpg");
 
         // Obtener el bitmap de la imagen desde el ImageView
         imageViewSelected.setDrawingCacheEnabled(true);
@@ -202,9 +202,9 @@ public class EtapaCultivo extends AppCompatActivity {
             // Imagen subida con éxito
             // Obtener la URL de la imagen subida
             imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                String imageUrl = uri.toString();
+                String imagenUrl = uri.toString();
                 // Guardar la URL de la imagen en la base de datos
-                etapa.setImageUrl(imageUrl);
+                etapa.setImageUrl(imagenUrl);
                 databaseReference.child("users").child(userId).child("etapas").child(etapaId).setValue(etapa);
             });
 
@@ -221,7 +221,7 @@ public class EtapaCultivo extends AppCompatActivity {
         public String id;
         public String nombreEtapa, observaciones, medidas, horasCalor, tierra,
                 ubicacion, substrato, fecha;
-        public String imageUrl; // Nuevo campo para almacenar la URL de la imagen
+        public String imagenUrl; // Nuevo campo para almacenar la URL de la imagen
 
         public Etapa() {
             // Constructor vacío necesario para Firebase
@@ -243,8 +243,8 @@ public class EtapaCultivo extends AppCompatActivity {
             this.id = id;
         }
 
-        public void setImageUrl(String imageUrl) {
-            this.imageUrl = imageUrl;
+        public void setImageUrl(String imagenUrl) {
+            this.imagenUrl = imagenUrl;
         }
     }
 }
