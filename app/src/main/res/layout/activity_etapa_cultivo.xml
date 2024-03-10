@@ -161,7 +161,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buttonUploadImage"
                 android:layout_marginTop="10dp"
-                android:scaleType="centerCrop" />
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"  />
 
             <Button
                 android:id="@+id/buttonUploadImage"
