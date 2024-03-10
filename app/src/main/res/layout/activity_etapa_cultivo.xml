@@ -78,6 +78,16 @@
                 android:textColor="@color/black"
                 android:textSize="18dp"
                 android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editTextIdcultivo"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginTop="10dp"
+                android:hint="Id del cultivo"
+                android:textAlignment="center"
+                android:background="@color/colorWhite"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/editTextNombreEtapa"
@@ -157,13 +167,13 @@
                 android:textStyle="bold"/>
             <ImageView
                 android:id="@+id/imageViewSelected"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/buttonUploadImage"
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                android:scaleType="fitXY"  />
+                android:scaleType="fitXY" />
 
             <Button
                 android:id="@+id/buttonUploadImage"

@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,12 +31,13 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 
 public class EtapaCultivo extends AppCompatActivity {
 
     TextView textViewFechaEtapa;
-    EditText editTextNombreEtapa, editTextObservaciones, editTextMedidas,
+    EditText editTextIdcultivo, editTextNombreEtapa, editTextObservaciones, editTextMedidas,
             editTextHorasCalor, editTextTierraEtapa, editTextUbicacionEtapa,
             editTextSubstratoEtapa;
 
@@ -56,6 +58,7 @@ public class EtapaCultivo extends AppCompatActivity {
         imageViewSelected = findViewById(R.id.imageViewSelected);
 
         textViewFechaEtapa = findViewById(R.id.textViewFechaEtapa);
+        editTextIdcultivo = findViewById(R.id.editTextIdcultivo);
         editTextNombreEtapa = findViewById(R.id.editTextNombreEtapa);
         editTextObservaciones = findViewById(R.id.editTextObservaciones);
         editTextMedidas = findViewById(R.id.editTextMedidas);
@@ -118,21 +121,28 @@ public class EtapaCultivo extends AppCompatActivity {
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == RESULT_OK) {
-                    Bundle extras = result.getData().getExtras();
-                    if (extras != null) {
-                        Bitmap imageBitmap = (Bitmap) extras.get("data");
-                        imageViewSelected.setImageBitmap(imageBitmap);
+                    Intent data = result.getData();
+                    if (data != null) {
+                        Uri selectedImageUri = data.getData();
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImageUri);
+                            imageViewSelected.setImageBitmap(bitmap);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             });
 
     private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        takePictureLauncher.launch(takePictureIntent);
+        Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickImageIntent.setType("image/*");
+        takePictureLauncher.launch(pickImageIntent);
     }
 
     private void registrarEtapa() {
         // Obtén los valores de las vistas
+        String idcultivo = editTextIdcultivo.getText().toString().trim();
         String nombreEtapa = editTextNombreEtapa.getText().toString().trim();
         String observaciones = editTextObservaciones.getText().toString().trim();
         String medidas = editTextMedidas.getText().toString().trim();
@@ -151,7 +161,7 @@ public class EtapaCultivo extends AppCompatActivity {
             Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
         } else {
             // Crea un nuevo objeto Etapa con el ID del usuario
-            Etapa etapa = new Etapa(nombreEtapa, observaciones, medidas, horasCalor,
+            Etapa etapa = new Etapa(idcultivo,nombreEtapa, observaciones, medidas, horasCalor,
                     tierra, ubicacion, substrato, fecha);
 
             // Genera un nuevo ID para la etapa
@@ -172,6 +182,7 @@ public class EtapaCultivo extends AppCompatActivity {
 
     // Método para limpiar los campos del formulario
     private void limpiarCampos() {
+        editTextIdcultivo.setText("");
         editTextNombreEtapa.setText("");
         editTextObservaciones.setText("");
         editTextMedidas.setText("");
@@ -220,15 +231,16 @@ public class EtapaCultivo extends AppCompatActivity {
     private static class Etapa {
         public String id;
         public String nombreEtapa, observaciones, medidas, horasCalor, tierra,
-                ubicacion, substrato, fecha;
+                ubicacion, substrato, fecha, idcultivo;
         public String imagenUrl; // Nuevo campo para almacenar la URL de la imagen
 
         public Etapa() {
             // Constructor vacío necesario para Firebase
         }
 
-        public Etapa(String nombreEtapa, String observaciones, String medidas, String horasCalor,
+        public Etapa(String idcultivo,String nombreEtapa, String observaciones, String medidas, String horasCalor,
                      String tierra, String ubicacion, String substrato, String fecha) {
+            this.idcultivo =idcultivo;
             this.nombreEtapa = nombreEtapa;
             this.observaciones = observaciones;
             this.medidas = medidas;
