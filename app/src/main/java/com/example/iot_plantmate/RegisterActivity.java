@@ -75,6 +75,20 @@ public class RegisterActivity extends AppCompatActivity {
                                                 // Registro exitoso
                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                 uid = user.getUid(); // Almacenar el UID en la variable
+                                                // Enviar correo de verificación
+                                                user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> emailVerificationTask) {
+                                                        if (emailVerificationTask.isSuccessful()) {
+                                                            // Correo de verificación enviado exitosamente
+                                                            Toast.makeText(getApplicationContext(), "Se ha enviado un correo de verificación a " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                                        } else {
+                                                            // Error al enviar correo de verificación
+                                                            Toast.makeText(getApplicationContext(), "Error al enviar el correo de verificación", Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
+
 
                                                 // Guardar el nombre en la base de datos en tiempo real
                                                 mDatabase.child("users").child(uid).child("nombre").setValue(username);
