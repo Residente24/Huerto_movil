@@ -33,6 +33,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Random;
 
 public class EtapaCultivo extends AppCompatActivity {
 
@@ -166,7 +167,8 @@ public class EtapaCultivo extends AppCompatActivity {
 
             // Genera un nuevo ID para la etapa
             idEtapa = databaseReference.child("users").child(userId).child("etapas").push().getKey();
-
+            // Genera un nuevo ID para la etapa
+            idEtapa = generateRandomId("etp", 6); // "etp" seguido de 6 dígitos aleatorios
             // Asigna el ID al objeto Etapa
             etapa.setId(idEtapa);
 
@@ -179,7 +181,6 @@ public class EtapaCultivo extends AppCompatActivity {
             limpiarCampos();
         }
     }
-
     // Método para limpiar los campos del formulario
     private void limpiarCampos() {
         editTextIdcultivo.setText("");
@@ -192,6 +193,16 @@ public class EtapaCultivo extends AppCompatActivity {
         editTextSubstratoEtapa.setText("");
         textViewFechaEtapa.setText("Fecha: No Seleccionada");
     }
+    // Método para generar un ID aleatorio
+    private String generateRandomId(String prefix, int length) {
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder(prefix);
+        for (int i = 0; i < length; i++) {
+            builder.append(random.nextInt(10)); // Agrega un dígito aleatorio (0-9)
+        }
+        return builder.toString();
+    }
+
 
     private void uploadImageToFirebaseStorage(String etapaId, String userId, Etapa etapa) {
         // Obtener la referencia al Storage con el nombre de la imagen

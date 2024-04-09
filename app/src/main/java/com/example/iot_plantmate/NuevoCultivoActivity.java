@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
+import java.util.Random;
 import java.util.Calendar;
 
 public class NuevoCultivoActivity extends AppCompatActivity {
@@ -120,6 +120,9 @@ public class NuevoCultivoActivity extends AppCompatActivity {
             // Genera un nuevo ID para el cultivo
             idCultivo = databaseReference.push().getKey();
 
+            // Genera un nuevo ID para la etapa
+            idCultivo = generateRandomId("cult", 6); // "etp" seguido de 6 dígitos aleatorios
+
             // Asigna el ID al objeto Cultivo
             cultivo.setId(idCultivo);
 
@@ -143,6 +146,15 @@ public class NuevoCultivoActivity extends AppCompatActivity {
         editTextUbicacion.setText("");
         editTextSubstrato.setText("");
         textViewFecha.setText("Fecha: No Seleccionada");
+    }
+    // Método para generar un ID aleatorio
+    private String generateRandomId(String prefix, int length) {
+        Random random = new Random();
+        StringBuilder builder = new StringBuilder(prefix);
+        for (int i = 0; i < length; i++) {
+            builder.append(random.nextInt(10)); // Agrega un dígito aleatorio (0-9)
+        }
+        return builder.toString();
     }
 
     // Clase interna para el modelo Cultivo
